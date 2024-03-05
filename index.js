@@ -10,7 +10,7 @@ app.listen(porta, () => {
     console.log("Servidor iniciado na porta " + porta);
     // console.log(`Servidor iniciado na porta ${porta}`);
 });
-// request vem do font e response vem do back
+// request vem do front e response vem do back
 app.get("/", (request, response) => {
     response.send("Olá mundo!");
 });
