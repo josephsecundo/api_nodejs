@@ -4,6 +4,7 @@ const db = require('../database/connection');
 module.exports = {
     async listarProdutos(request, response) {
         try {
+            // throw new Error('Eu causei o erro!');
             return response.status(200).json({
                 sucesso: true, 
                 mensagem: 'Lista de produtos.', 
@@ -12,7 +13,7 @@ module.exports = {
         } catch (error) {
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: `Erro na requisição. \n ${error}`, 
+                mensagem: `Erro na requisição. -${error}`, 
                 dados: null
             });
         }
@@ -27,7 +28,7 @@ module.exports = {
         } catch (error) {
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: `Erro na requisição. \n ${error}`, 
+                mensagem: `Erro na requisição. -${error}`, 
                 dados: null
             });
         }
@@ -42,7 +43,7 @@ module.exports = {
         } catch (error) {
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: `Erro na requisição. \n ${error}`, 
+                mensagem: `Erro na requisição. -${error}`, 
                 dados: null
             });
         }
@@ -51,13 +52,13 @@ module.exports = {
         try {
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Apagar usuários.', 
+                mensagem: 'Apagar produtos.', 
                 dados: null
             });
         } catch (error) {
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: `Erro na requisição. \n ${error}`, 
+                mensagem: `Erro na requisição. -${error}`, 
                 dados: null
             });
         }
