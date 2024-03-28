@@ -19,16 +19,30 @@ module.exports = {
     }, 
     async cadastrarUsuarios(request, response) {
         try {
+            // parâmetros recebidos no corpo da requisição
+            const { usu_nome, usu_email, usu_dt_nasc, usu_senha, usu_tipo, usu_ativo } = request.body;
+            // instrução SQL
+            const sql = `INSERT INTO usuarios 
+                (usu_nome, usu_email, usu_dt_nasc, usu_senha, usu_tipo, usu_ativo) 
+                VALUES (?, ?, ?, ?, ?, ?)`;
+            // definição dos dados a serem inseridos em um array
+            const values = [usu_nome, usu_email, usu_dt_nasc, usu_senha, usu_tipo, usu_ativo];  
+            // execução da instrução sql passando os parâmetros
+            const execSql = await db.query(sql, values); 
+            // identificação do ID do registro inserido
+            const usu_id = execSql[0].insertId;           
+
             return response.status(200).json({
                 sucesso: true, 
-                mensagem: 'Cadastro de usuários.', 
-                dados: null
+                mensagem: 'Cadastro de usuário efetuado com sucesso.', 
+                dados: usu_id, 
+                sql: execSql
             });
         } catch (error) {
             return response.status(500).json({
                 sucesso: false, 
-                mensagem: `Erro na requisição. \n ${error}`, 
-                dados: null
+                mensagem: 'Erro na requisição.', 
+                dados: error.message
             });
         }
     }, 
