@@ -30,7 +30,7 @@ module.exports = {
     }, 
     async cadastrarProdutos(request, response) {
         try {
-            const {pdr_nome, prd_valor,
+            const {prd_nome, prd_valor,
             prd_unidade, ptp_id, prd_disponivel, 
             prd_img_destaque, prd_descricao} = request.body;
 
@@ -38,7 +38,7 @@ module.exports = {
             (prd_id, prd_nome, prd_unidade, prd_disponivel, prd_descricao)
                 VALUES (?,?,?,?)`;
 
-                const values =[prd_nome, prd_disponivel, prd_id, prd_valor];
+                const values =[prd_nome, prd_unidade, prd_descricao, prd_disponivel, prd_id, prd_valor];
 
                 const execSql = await db.query(sql, values);
 
