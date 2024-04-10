@@ -30,15 +30,19 @@ module.exports = {
     }, 
     async cadastrarProdutos(request, response) {
         try {
-            const {prd_nome, prd_valor,
-            prd_unidade, ptp_id, prd_disponivel, 
-            prd_img_destaque, prd_descricao} = request.body;
+            const {prd_nome, prd_valor, prd_unidade, ptd_id,
+                prd_disponivel, prd_img, prd_destaque, 
+                prd_img_estaque, prd_descricao} = request.body;
 
             const sql = `INSERT INTO produtos
-            (prd_id, prd_nome, prd_unidade, prd_disponivel, prd_descricao)
-                VALUES (?,?,?,?)`;
+            (prd_nome, prd_valor, prd_unidade, ptd_id,
+             prd_disponivel, prd_img, prd_destaque, 
+             prd_img_estaque, prd_descricao)
+                VALUES (?,?,?,?,?,?,?,?,?)`;
 
-                const values =[prd_nome, prd_unidade, prd_descricao, prd_disponivel, prd_id, prd_valor];
+                const values =[prd_nome, prd_valor, prd_unidade, ptd_id,
+                    prd_disponivel, prd_img, prd_destaque, 
+                    prd_img_estaque, prd_descricao];
 
                 const execSql = await db.query(sql, values);
 
